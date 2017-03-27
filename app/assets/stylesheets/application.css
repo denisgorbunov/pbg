@@ -16,4 +16,6 @@
  *= require bootstrap.min.css
  */
 
-
+body {
+    padding: 0 50px;
+}

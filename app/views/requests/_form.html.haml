@@ -1,0 +1,10 @@
+- if @clients.empty?
+  %p
+    Нет сохраненных клиентов.
+    = link_to 'Создать нового', new_client_path
+- else
+  = simple_form_for(@request, html: {class: 'form-horizontal'}) do |f|
+    %p= f.input :client_id, collection: @clients, as: :select, prompt: "Выберите клиента"
+    %p
+      = f.submit "Сохранить", class: "btn btn-sm btn-success"
+      = link_to "Назад", :back, class: "btn btn-sm btn-primary"

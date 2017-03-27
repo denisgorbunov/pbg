@@ -1,0 +1,25 @@
+.page-header
+  %h1
+    Клиенты
+    %small= 'агента '+current_user.name
+- if @clients.empty?
+  %p
+    Нет сохраненных клиентов.
+    = link_to "Создать нового?", new_client_path
+-else
+  %p.text-right= link_to "Создать нового клиента", new_client_path
+  %table.table.table-hover
+    %thead
+      %tr
+        %th #
+        %th Название
+        %th
+    - @clients.each do |client|
+      %tr
+        %td= client.id
+        %td= client.name
+        %td.text-right
+          = link_to "Изменить", edit_client_path(client), class: "btn btn-sm btn-primary"
+          = link_to "Удалить", client, class: "btn btn-sm btn-danger", method: :delete, data: {confirm: "Действительно хотите удалить?"}
+
+

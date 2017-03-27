@@ -1,0 +1,7 @@
+= simple_form_for(@client, html: {class: 'form-horizontal'}) do |f|
+  %p= f.input :name, as: :string, label: 'Название', hint: false, placeholder: 'ООО "Рога и копыта"'
+  %p= f.input :inn, as: :integer, label: 'ИНН', hint: false, placeholder: '1234567890'
+  %p= f.input :kpp, as: :integer, label: 'КПП', hint: false, placeholder: '1234567890'
+  %p
+    = f.submit "Сохранить", class: "btn btn-sm btn-success"
+    = link_to "Назад", :back, class: "btn btn-sm btn-primary"
