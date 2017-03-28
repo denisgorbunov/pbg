@@ -14,6 +14,7 @@
  *= require_self
  *= require login_form.css
  *= require bootstrap.min.css
+ *= require bootstrap-datepicker3
  */
 
 body {

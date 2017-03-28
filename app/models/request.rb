@@ -1,4 +1,5 @@
 class Request < ApplicationRecord
+  resourcify
   belongs_to  :user
   belongs_to  :client
 

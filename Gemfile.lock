@@ -43,6 +43,8 @@ GEM
     bcrypt (3.1.11-java)
     bcrypt (3.1.11-x64-mingw32)
     bcrypt (3.1.11-x86-mingw32)
+    bootstrap-datepicker-rails (1.6.4.1)
+      railties (>= 3.0)
     builder (3.2.3)
     byebug (9.0.6)
     coffee-rails (4.2.1)
@@ -140,6 +142,7 @@ GEM
     rb-fsevent (0.9.8)
     rb-inotify (0.9.8)
       ffi (>= 0.5.0)
+    rolify (5.1.0)
     russian (0.6.0)
       i18n (>= 0.5.0)
     sass (3.4.23)
@@ -199,14 +202,17 @@ PLATFORMS
   x86-mswin32
 
 DEPENDENCIES
+  bootstrap-datepicker-rails
   byebug
   coffee-rails (~> 4.2)
   haml
   jbuilder (~> 2.5)
   jquery-rails
   listen (~> 3.0.5)
+  nokogiri
   puma (~> 3.0)
   rails (~> 5.0.2)
+  rolify
   russian
   sass-rails (~> 5.0)
   simple_form

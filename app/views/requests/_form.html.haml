@@ -1,10 +1,21 @@
-- if @clients.empty?
-  %p
-    Нет сохраненных клиентов.
-    = link_to 'Создать нового', new_client_path
-- else
-  = simple_form_for(@request, html: {class: 'form-horizontal'}) do |f|
-    %p= f.input :client_id, collection: @clients, as: :select, prompt: "Выберите клиента"
-    %p
-      = f.submit "Сохранить", class: "btn btn-sm btn-success"
-      = link_to "Назад", :back, class: "btn btn-sm btn-primary"
+.row
+  .col-md-2
+    - if @clients.empty?
+      %p
+        Нет сохраненных клиентов.
+        = link_to 'Создать нового', new_client_path
+    - else
+      = simple_form_for(@request, wrapper: :inline_form, html: {class: 'form-horizontal'}) do |f|
+        %p= f.input :client_id, collection: @clients, as: :select, prompt: 'Выберите клиента', label: 'Клиент'
+        %p= f.input :template, as: :radio_buttons, collection: [['Да',true], ['Нет',false]], label: 'Шаблон заказчика'
+        %p= f.input :type, as: :radio_buttons, collection: [['Коммерческая',1], ['Госзакупка',0]], label: 'Тип гарантии'
+        %p
+          =f.input :bg_summ, label: false, placeholder: 'Сумма БГ'
+          =f.input :summ_currency, label: false, as: :select, collection: [["&#8381;".html_safe, 'rub'], ["&euro;".html_safe, 'eur'], ["&dollar;".html_safe, 'usd']], prompt: 'Валюта'
+        %p= f.input :immediately, as: :radio_buttons, collection: [['Да',true], ['Нет',false]], label: 'Срок гарантии с момента выдачи'
+        %p= f.input :date_end, label: 'Срок действия', promt: 'по ...'
+
+
+        %p{align: "center"}
+          = f.submit 'Сохранить', class: 'btn btn-sm btn-success'
+          = link_to 'Назад', :back, class: 'btn btn-sm btn-primary'

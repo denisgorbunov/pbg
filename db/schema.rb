@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170320084903) do
+ActiveRecord::Schema.define(version: 20170328123608) do
 
   create_table "clients", force: :cascade do |t|
     t.integer  "user_id"
@@ -26,10 +26,27 @@ ActiveRecord::Schema.define(version: 20170320084903) do
   create_table "requests", force: :cascade do |t|
     t.integer  "client_id"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.boolean  "template"
+    t.integer  "type"
+    t.integer  "bg_summ"
+    t.integer  "summ_currency"
+    t.boolean  "immediately"
+    t.date     "date_end"
+    t.boolean  "prepayment"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.index ["client_id"], name: "index_requests_on_client_id"
     t.index ["user_id"], name: "index_requests_on_user_id"
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.string   "name"
+    t.string   "resource_type"
+    t.integer  "resource_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
+    t.index ["name"], name: "index_roles_on_name"
   end
 
   create_table "users", force: :cascade do |t|
@@ -48,6 +65,12 @@ ActiveRecord::Schema.define(version: 20170320084903) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["remember_me_token"], name: "index_users_on_remember_me_token"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token"
+  end
+
+  create_table "users_roles", id: false, force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "role_id"
+    t.index ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id"
   end
 
 end
