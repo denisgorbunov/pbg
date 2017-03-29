@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 20170328123608) do
     t.integer  "user_id"
     t.boolean  "template"
     t.integer  "bg_type"
-    t.integer  "issue",         limit: 20
+    t.integer  "issue",            limit: 20
     t.integer  "bg_summ"
     t.string   "summ_currency"
     t.boolean  "immediately"
@@ -37,8 +37,13 @@ ActiveRecord::Schema.define(version: 20170328123608) do
     t.text     "comment"
     t.integer  "status"
     t.integer  "approval"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.string   "file_application"
+    t.string   "file_passports"
+    t.string   "file_project"
+    t.string   "file_consent"
+    t.string   "file_balans"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.index ["client_id"], name: "index_requests_on_client_id"
     t.index ["user_id"], name: "index_requests_on_user_id"
   end

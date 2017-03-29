@@ -14,6 +14,11 @@ class CreateRequests < ActiveRecord::Migration[5.0]
       t.text        :comment
       t.integer     :status
       t.integer     :approval
+      t.string      :file_application
+      t.string      :file_passports
+      t.string      :file_project
+      t.string      :file_consent
+      t.string      :file_balans
 
       t.timestamps
     end

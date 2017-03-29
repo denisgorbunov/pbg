@@ -1,6 +1,5 @@
 .row
-  .col-md-2
-
+  .col-md-6
     = simple_form_for(@request, wrapper: :inline_form, html: {class: 'form-horizontal'}) do |f|
       = f.input :client_id, collection: @clients, as: :select, prompt: 'Выберите клиента', label: 'Клиент'
       = f.input :template, as: :radio_buttons, collection: [['Да',true], ['Нет',false]], label: 'Шаблон заказчика'
@@ -15,6 +14,31 @@
       = f.input :date_end, as: :string, :input_html => {:data => {:provide => 'datepicker', 'date-format' => 'dd.mm.yyyy', 'date-autoclose' => 'true'}}, placeholder: 'Срок действия по ...', prompt: 'Валюта'
       = f.input :prepayment, as: :radio_buttons, collection: [['Да',true], ['Нет',false]], label: 'Аванс'
       = f.input :comment, as: :text, label: 'Комментарий', placeholder: 'Комментарий'
+      .row
+        .col-md-8
+          %p Заявление на предоставление банковской гарантии
+        .col-md-4
+          = f.input :file_application, as: :file, label: false
+      .row
+        .col-md-8
+          %p Паспорта всех Учредителей, Генерального директора и Главного бухгалтера
+        .col-md-4
+          = f.input :file_passports, as: :file, label: false
+      .row
+        .col-md-8
+          %p Проект контракта
+        .col-md-4
+          = f.input :file_project, as: :file, label: false
+      .row
+        .col-md-8
+          %p Согласия юридического и физического лиц на запрос и предоставление информации в Бюро Кредитных Историй для всех учредителей и директора, образец
+        .col-md-4
+          = f.input :file_consent, as: :file, label: false
+      .row
+        .col-md-8
+          %p Баланс и отчет о финансовых результатах предприятия за последние 5 отчетных периодов.
+        .col-md-4
+        = f.input :file_balans, as: :file, label: false
 
 
       %p{align: "center"}

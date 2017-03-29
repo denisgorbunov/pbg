@@ -10,6 +10,6 @@
     %body
       .container-fluid
         = render 'shared/navbar' unless !logged_in?
-        = render 'shared/flash_message' unless flash.empty?
+        = render 'shared/flash_message'
         = yield
-    -#= console
+

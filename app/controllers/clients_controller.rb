@@ -1,9 +1,10 @@
 class ClientsController < ApplicationController
-  before_action :find_client, only: [:edit, :update, :destroy]
+  before_action :set_client, only: [:edit, :update, :destroy]
+  before_action :set_clients, only: [:index, :edit]
   before_action :require_login
 
   def index
-    @clients = current_user.clients
+
   end
 
   def new
@@ -13,8 +14,10 @@ class ClientsController < ApplicationController
   def create
     @client = current_user.clients.create(client_params)
     if @client.valid?
-      redirect_to clients_path, :success => 'Клиент успешно сохранен!'
+      flash[:success]='Клиент успешно сохранен!'
+      redirect_to clients_path
     else
+      flash[:error]='Ошибка при сохранении!'
       render 'new'
     end
   end
@@ -25,6 +28,13 @@ class ClientsController < ApplicationController
 
   def update
     @client.update_attributes(client_params)
+    if @client.valid?
+      flash[:success]='Клиент успешно изменен!'
+      redirect_to clients_path
+    else
+      flash[:error]='Ошибка при сохранении!'
+      render 'edit'
+    end
   end
 
   def destroy
@@ -34,8 +44,16 @@ class ClientsController < ApplicationController
 
   protected
 
-  def find_client
+  def set_client
     @client = Client.find(params[:id])
+  end
+
+  def set_clients
+    if current_user.has_role? :agent
+      @clients = current_user.clients
+    elsif current_user.has_role? :partner
+      @clients = Client.all
+    end
   end
 
   def client_params
