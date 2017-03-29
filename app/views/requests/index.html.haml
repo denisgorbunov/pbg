@@ -2,7 +2,6 @@
   .page-header
     %h1
       Заявки
-      %small= "агента #{current_user.name}"
   - if @requests.empty?
     %p
       Нет ни одной заявки.
@@ -12,12 +11,14 @@
     %table.table.table-hover
       %thead
         %tr
-          %th #
+          %th Код заявки
           %th Клиент (ИНН)
-          %th Агент
+          - if current_user.has_role? :partner
+            %th Агент
           %th Дата заявки
           %th Статус
-          %th Одобрено
+          - if current_user.has_role? :partner
+            %th Одобрено
           %th Срок БГ (дней)
           %th Размер обеспечения
           %th
@@ -27,12 +28,16 @@
           %td
             = client(request.client_id).name
             = "(#{client(request.client_id).inn})"
-          %td= user(request.user_id).name
+          - if current_user.has_role? :partner
+            %td= user(request.user_id).name
           %td= request.created_at.strftime("%d.%m.%Y %H:%M:%S")
-          %td.danger статус?
-          %td.danger одобрено?
-          %td.danger 25.03.2017 22:16
-          %td.danger 345 345
+          %td= request_status(request.status)
+          - if current_user.has_role? :partner
+            %td.danger одобрено?
+          %td= "по #{request.date_end.strftime('%d.%m.%Y')} (#{request.date_end.mjd - request.created_at.to_date.mjd})"
+          %td
+            = summ_delimeter(request.bg_summ)
+            = currency(request.summ_currency)
 
           %td.text-right
             = link_to "Изменить", edit_request_path(request), class: "btn btn-sm btn-primary"

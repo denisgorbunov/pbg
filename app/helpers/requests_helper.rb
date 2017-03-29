@@ -1,6 +1,6 @@
 module RequestsHelper
   def client(client_id)
-    current_user.clients.find(client_id)
+    Client.find(client_id)
   end
 
   def user(user_id)

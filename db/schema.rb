@@ -27,14 +27,18 @@ ActiveRecord::Schema.define(version: 20170328123608) do
     t.integer  "client_id"
     t.integer  "user_id"
     t.boolean  "template"
-    t.integer  "type"
+    t.integer  "bg_type"
+    t.integer  "issue",         limit: 20
     t.integer  "bg_summ"
-    t.integer  "summ_currency"
+    t.string   "summ_currency"
     t.boolean  "immediately"
     t.date     "date_end"
     t.boolean  "prepayment"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.text     "comment"
+    t.integer  "status"
+    t.integer  "approval"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
     t.index ["client_id"], name: "index_requests_on_client_id"
     t.index ["user_id"], name: "index_requests_on_user_id"
   end

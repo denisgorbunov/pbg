@@ -4,12 +4,16 @@ class CreateRequests < ActiveRecord::Migration[5.0]
       t.belongs_to  :client, index: true
       t.belongs_to  :user, index: true
       t.boolean     :template
-      t.integer     :type
+      t.integer     :bg_type
+      t.integer     :issue, limit: 20
       t.integer     :bg_summ
-      t.integer     :summ_currency
+      t.string      :summ_currency
       t.boolean     :immediately
       t.date        :date_end
       t.boolean     :prepayment
+      t.text        :comment
+      t.integer     :status
+      t.integer     :approval
 
       t.timestamps
     end

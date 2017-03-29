@@ -3,7 +3,11 @@ class RequestsController < ApplicationController
   before_action :require_login
 
   def index
-    @requests = current_user.requests
+    if current_user.has_role? :agent
+      @requests = current_user.requests
+    elsif current_user.has_role? :partner
+      @requests = Request.all
+    end
   end
 
   def new
@@ -40,7 +44,7 @@ class RequestsController < ApplicationController
   end
 
   def request_params
-    params.require(:request).permit(:client_id)
+    params.require(:request).permit(:client_id, :template, :bg_type, :issue, :bg_summ, :summ_currency, :immediately, :date_end, :prepayment, :comment)
   end
 
 
