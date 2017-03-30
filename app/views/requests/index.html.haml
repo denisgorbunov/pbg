@@ -24,7 +24,7 @@
           %th
       - @requests.each do |request|
         %tr
-          %td= request.id
+          %td= link_to request.id, request
           %td
             = client(request.client_id).name
             = "(#{client(request.client_id).inn})"

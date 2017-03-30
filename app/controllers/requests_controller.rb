@@ -1,9 +1,13 @@
 class RequestsController < ApplicationController
-  before_action :set_request, only: [:edit, :update, :destroy]
+  before_action :set_request, only: [:show, :edit, :update, :destroy, :zip]
   before_action :set_requests, :set_clients, only: [:index, :create]
   before_action :require_login
 
   def index
+  end
+
+  def show
+
   end
 
   def new
@@ -50,6 +54,54 @@ class RequestsController < ApplicationController
     redirect_to requests_path
   end
 
+  def zip
+    require 'rubygems'
+    require 'zip'
+    require 'pathname'
+
+    Zip.setup do |c|
+      c.on_exists_proc = true
+      c.continue_on_exists_proc = true
+      c.unicode_names = true
+      c.default_compression = Zlib::BEST_COMPRESSION
+    end
+
+    files = [@request.file_application.current_path, @request.file_passports.current_path, @request.file_project.current_path, @request.file_consent.current_path]
+    zipfile_name = "#{Rails.root}/public/uploads/request/#{@request.id}/#{@request.id}.zip"
+
+    Zip::File.open(zipfile_name, Zip::File::CREATE) do |zipfile|
+      files.each {
+          |file_to_be_zipped|
+
+        filename = File.basename(file_to_be_zipped)
+
+        if filename == @request.file_application_identifier
+          filename = "Заявление на предоставление БГ.#{File.extname(filename)}"
+        elsif filename == @request.file_passports_identifier
+          filename = "Паспорта.#{File.extname(filename)}"
+        elsif filename == @request.file_project_identifier
+          filename = "Проект контракта.#{File.extname(filename)}"
+        elsif filename == @request.file_consent_identifier
+          filename = "Согласия на запрос и предоставление информации.#{File.extname(filename)}"
+        end
+
+        puts "zipper: archiving #{file_to_be_zipped} as #{filename} into #{zipfile}"
+
+        zipfile.add(filename, file_to_be_zipped)
+      }
+    end
+
+    File.open(zipfile_name, 'r') do |f|
+      send_data f.read,
+                :filename => "#{@request.id} - #{Client.find(@request.client_id).name}.zip",
+                :type => 'application/zip',
+                :disposition => 'attachment',
+                :streaming => 'true',
+                :buffer_size => '4096'
+    end
+    File.delete(zipfile_name)
+  end
+
   protected
 
   def set_request
@@ -77,6 +129,5 @@ class RequestsController < ApplicationController
                                     :date_end, :prepayment, :comment, :file_application, :file_passports, :file_project,
                                     :file_consent, :file_balans)
   end
-
 
 end

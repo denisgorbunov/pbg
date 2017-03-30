@@ -37,7 +37,7 @@ class RequestUploader < CarrierWave::Uploader::Base
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
    def extension_whitelist
-     [/jpe?g/, 'gif', 'png', /docx?/, /xls(x|m)?/, 'rar', 'zip', '7z', /tar(.gz)?/, 'txt']
+     [/jpe?g/, 'gif', 'png', /docx?/, /xls(x|m)?/, 'rar', 'zip', '7z', /tar(.gz)?/, 'txt', 'pdf']
    end
 
   # Override the filename of the uploaded files:
