@@ -38,15 +38,15 @@
 
       %p
         %b Заявление на предоставление БГ:
-        = link_to "Скачать", @request.file_application.url, :"download"=>"#{@request.id} Заявление на предоставление БГ" if @request.file_application.nil?
+        = link_to "Скачать", @request.file_application.url, :"download"=>"#{@request.id} Заявление на предоставление БГ" if @request.file_application?
       %p
         %b Паспорта:
-        = link_to "Скачать", @request.file_passports.url, :"download"=>"#{@request.id} Паспорта" if @request.file_passports.nil?
+        = link_to "Скачать", @request.file_passports.url, :"download"=>"#{@request.id} Паспорта" if !@request.file_passports?
       %p
         %b Проект контракта:
-        = link_to "Скачать", @request.file_project.url, :"download"=>"#{@request.id} Проект контракта" if @request.file_project.nil?
+        = link_to "Скачать", @request.file_project.url, :"download"=>"#{@request.id} Проект контракта" if @request.file_project?
       %p
         %b Согласия на запрос и предоставление информации:
-        = link_to "Скачать", @request.file_consent.url, :"download"=>"#{@request.id} Согласия на запрос и предоставление информации" if @request.file_consent.nil?
+        = link_to "Скачать", @request.file_consent.url, :"download"=>"#{@request.id} Согласия на запрос и предоставление информации" if @request.file_consent?
       %p
         %b Баланс и отчет о финансовых результатах:
