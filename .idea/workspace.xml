@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="ed6c0ea4-b2d8-4532-946b-15f324706f14" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/requests_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/requests_controller.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/requests/show.html.haml" afterPath="$PROJECT_DIR$/app/views/requests/show.html.haml" />
     </list>
     <ignored path="$PROJECT_DIR$/.bundle/" />
@@ -47,8 +46,8 @@
       <file leaf-file-name="show.html.haml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/requests/show.html.haml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="578">
-              <caret line="45" column="28" lean-forward="true" selection-start-line="45" selection-start-column="28" selection-end-line="45" selection-end-column="28" />
+            <state relative-caret-position="638">
+              <caret line="49" column="8" lean-forward="true" selection-start-line="49" selection-start-column="8" selection-end-line="49" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -59,9 +58,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="600">
               <caret line="40" column="57" lean-forward="false" selection-start-line="40" selection-start-column="10" selection-end-line="40" selection-end-column="57" />
-              <folding>
-                <marker date="1490879099000" expanded="true" signature="2268:2315" ph="= f.input :file_balans, as: :file, label: false" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -69,7 +66,7 @@
       <file leaf-file-name="requests_controller.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/requests_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-675">
+            <state relative-caret-position="-885">
               <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
               <folding />
             </state>
@@ -604,7 +601,7 @@
       <workItem from="1490686924284" duration="5286000" />
       <workItem from="1490694614798" duration="12700000" />
       <workItem from="1490773084329" duration="20386000" />
-      <workItem from="1490859485256" duration="12363000" />
+      <workItem from="1490859485256" duration="12422000" />
     </task>
     <task id="LOCAL-00001" summary="fix .gitignore">
       <created>1490180741434</created>
@@ -697,11 +694,18 @@
       <option name="project" value="LOCAL" />
       <updated>1490879125575</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Загрузка файлов">
+      <created>1490880783674</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1490880783674</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="92582000" />
+    <option name="totallyTimeSpent" value="92641000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="972" extended-state="6" />
@@ -1084,16 +1088,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/requests/_form.html.haml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="40" column="57" lean-forward="false" selection-start-line="40" selection-start-column="10" selection-end-line="40" selection-end-column="57" />
-          <folding>
-            <marker date="1490879099000" expanded="true" signature="2268:2315" ph="= f.input :file_balans, as: :file, label: false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/uploaders/request_uploader.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
@@ -1104,16 +1098,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/requests_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-675">
+        <state relative-caret-position="-885">
           <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/requests/_form.html.haml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="40" column="57" lean-forward="false" selection-start-line="40" selection-start-column="10" selection-end-line="40" selection-end-column="57" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/requests/show.html.haml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="45" column="28" lean-forward="true" selection-start-line="45" selection-start-column="28" selection-end-line="45" selection-end-column="28" />
+        <state relative-caret-position="638">
+          <caret line="49" column="8" lean-forward="true" selection-start-line="49" selection-start-column="8" selection-end-line="49" selection-end-column="8" />
           <folding />
         </state>
       </provider>
