@@ -47,6 +47,6 @@
         = link_to "Скачать", @request.file_project.url, :"download"=>"#{@request.id} Проект контракта" unless @request.file_project.nil?
       %p
         %b Согласия на запрос и предоставление информации:
-        - @request.file_consent.nil? ? "Отсутствует" : link_to "Скачать", @request.file_consent.url, :"download"=>"#{@request.id} Согласия на запрос и предоставление информации"
+        = link_to "Скачать", @request.file_consent.url, :"download"=>"#{@request.id} Согласия на запрос и предоставление информации" unless @request.file_consent.nil?
       %p
         %b Баланс и отчет о финансовых результатах:
