@@ -1,18 +1,19 @@
 .row
-  .col-md-6
+  .col-md-4
     = simple_form_for(@request, wrapper: :inline_form, html: {class: 'form-horizontal'}) do |f|
       = f.input :client_id, collection: @clients, as: :select, prompt: 'Выберите клиента', label: 'Клиент'
-      = f.input :template, as: :radio_buttons, collection: [['Да',true], ['Нет',false]], label: 'Шаблон заказчика'
-      = f.input :bg_type, as: :radio_buttons, collection: [['Коммерческая',1], ['Госзакупка',0]], label: 'Тип гарантии'
+      = f.input :template, as: :radio_buttons, collection: [['Да',true], ['Нет',false]], label: 'Шаблон заказчика', :item_wrapper_class => 'radio-inline'
+      = f.input :bg_type, as: :radio_buttons, collection: [['Коммерческая',1], ['Госзакупка',0]], label: 'Тип гарантии', :item_wrapper_class => 'radio-inline'
       = f.input :issue, placeholder: 'Номер извещения/закупки'
       .row
         .col-md-8
           = f.input :bg_summ, label: false, placeholder: 'Сумма БГ'
         .col-md-4
           = f.input :summ_currency, label: false, as: :select, collection: [["&#8381;".html_safe, 'rub'], ["&euro;".html_safe, 'eur'], ["&dollar;".html_safe, 'usd']], prompt: 'Валюта'
-      = f.input :immediately, as: :radio_buttons, collection: [['Да',true], ['Нет',false]], label: 'Срок гарантии с момента выдачи'
-      = f.input :date_end, as: :string, :input_html => {:data => {:provide => 'datepicker', 'date-format' => 'dd.mm.yyyy', 'date-autoclose' => 'true'}}, placeholder: 'Срок действия по ...', prompt: 'Валюта'
-      = f.input :prepayment, as: :radio_buttons, collection: [['Да',true], ['Нет',false]], label: 'Аванс'
+      = f.input :immediately, as: :radio_buttons, collection: [['Да',true], ['Нет',false]], label: 'Срок гарантии с момента выдачи', :item_wrapper_class => 'radio-inline'
+      = f.input :date_start, as: :string, :input_html => {:data => {:provide => 'datepicker', 'date-format' => 'dd.mm.yyyy', 'date-autoclose' => 'true'}}, placeholder: 'c'
+      = f.input :date_end, as: :string, :input_html => {:data => {:provide => 'datepicker', 'date-format' => 'dd.mm.yyyy', 'date-autoclose' => 'true'}}, placeholder: 'по'
+      = f.input :prepayment, as: :radio_buttons, collection: [['Да',true], ['Нет',false]], label: 'Аванс', :item_wrapper_class => 'radio-inline'
       = f.input :comment, as: :text, label: 'Комментарий', placeholder: 'Комментарий'
       .row
         .col-md-8
@@ -42,6 +43,6 @@
 
 
       %p{align: "center"}
-        = f.submit 'Сохранить', class: 'btn btn-sm btn-success'
-        = link_to 'Назад', :back, class: 'btn btn-sm btn-primary'
+        = f.submit 'Сохранить', class: 'btn btn-md btn-success'
+        = link_to 'Назад', :back, class: 'btn btn-md btn-primary'
   .col-md-8

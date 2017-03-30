@@ -2,10 +2,15 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.request_issue {
+.request_issue, .request_date_start, .request_date_end {
   display: none;
 }
 
 .is-visible {
   display: block;
 }
+
+.radio-inline {
+  vertical-align: initial !important;
+}
+

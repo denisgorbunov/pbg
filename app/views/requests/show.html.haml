@@ -34,8 +34,8 @@
       %p
         %h3
           Документы:
-          %small= link_to "(Скачать архивом)", zip_create_path(id: @request.id)
-
+          - if @request.file_application? || @request.file_passports? || @request.file_project? || @request.file_consent?
+            %small= link_to "(Скачать архивом)", zip_create_path(id: @request.id)
       %p
         %b Заявление на предоставление БГ:
         = link_to "Скачать", @request.file_application.url, :"download"=>"#{@request.id} Заявление на предоставление БГ" if @request.file_application?

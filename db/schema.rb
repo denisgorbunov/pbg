@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20170328123608) do
     t.integer  "bg_summ"
     t.string   "summ_currency"
     t.boolean  "immediately"
+    t.date     "date_start"
     t.date     "date_end"
     t.boolean  "prepayment"
     t.text     "comment"

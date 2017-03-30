@@ -9,6 +9,7 @@ class CreateRequests < ActiveRecord::Migration[5.0]
       t.integer     :bg_summ
       t.string      :summ_currency
       t.boolean     :immediately
+      t.date        :date_start
       t.date        :date_end
       t.boolean     :prepayment
       t.text        :comment
