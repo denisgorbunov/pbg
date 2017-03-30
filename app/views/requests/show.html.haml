@@ -41,7 +41,7 @@
         = link_to "Скачать", @request.file_application.url, :"download"=>"#{@request.id} Заявление на предоставление БГ" if @request.file_application?
       %p
         %b Паспорта:
-        = link_to "Скачать", @request.file_passports.url, :"download"=>"#{@request.id} Паспорта" if !@request.file_passports?
+        = link_to "Скачать", @request.file_passports.url, :"download"=>"#{@request.id} Паспорта" if @request.file_passports?
       %p
         %b Проект контракта:
         = link_to "Скачать", @request.file_project.url, :"download"=>"#{@request.id} Проект контракта" if @request.file_project?
