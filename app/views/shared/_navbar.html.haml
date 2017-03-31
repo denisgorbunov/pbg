@@ -1,55 +1,56 @@
-%nav.navbar.navbar-default
-  .container-fluid
-    .navbar-header
-      %button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
-        %span.sr-only Toggle navigation
-        %span.icon-bar
-        %span.icon-bar
-        %span.icon-bar
-      %a.navbar-brand{:href => "/"} PBG
-    #bs-example-navbar-collapse-1.collapse.navbar-collapse
-      %ul.nav.navbar-nav
-        %li{:class => "dropdown #{is_active(requests_path)}"}
-          = link_to 'Заявки', requests_path, class: "dropdown-toggle", data: {"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-          %ul.dropdown-menu
-            %li
-              %a{:href => "#"} Профиль
-        %li{:class => "#{is_active(clients_path)}"}
-          = link_to 'Клиенты', clients_path
-      -#  %li.dropdown
-      -#    %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-      -#      Dropdown
-      -#      %span.caret
-      -#    %ul.dropdown-menu
-      -#      %li
-      -#        %a{:href => "#"} Action
-      -#      %li
-      -#        %a{:href => "#"} Another action
-      -#      %li
-      -#        %a{:href => "#"} Something else here
-      -#      %li.divider{:role => "separator"}
-      -#      %li
-      -#        %a{:href => "#"} Separated link
-      -#      %li.divider{:role => "separator"}
-      -#      %li
-      -#        %a{:href => "#"} One more separated link
-      -#%form.navbar-form.navbar-left
-      -#  .form-group
-      -#    %input.form-control{:placeholder => "Search", :type => "text"}/
-      -#  %button.btn.btn-default{:type => "submit"} Submit
-      %ul.nav.navbar-nav.navbar-right
-        %li.dropdown
-          %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-            - if current_user.has_role? :agent
-              = "Агент #{current_user.name}"
-            - elsif current_user.has_role? :partner
-              = "Партнёр #{current_user.name}"
-            %span.caret
-          %ul.dropdown-menu
-            %li
-              %a{:href => "#"} Профиль
-            %li
-              %a{:href => "#"} Настройки
-            %li.divider{:role => "separator"}
-            %li
-              = link_to "Выход", :logout, method: :post
+.row
+  %nav.navbar.navbar-default
+    .container-fluid
+      .navbar-header
+        %button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+          %span.sr-only Toggle navigation
+          %span.icon-bar
+          %span.icon-bar
+          %span.icon-bar
+        %a.navbar-brand{:href => "/"} PBG
+      #bs-example-navbar-collapse-1.collapse.navbar-collapse
+        %ul.nav.navbar-nav
+          %li{:class => "dropdown #{is_active(requests_path)}"}
+            = link_to 'Заявки', requests_path, class: "dropdown-toggle", data: {"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+            %ul.dropdown-menu
+              %li
+                %a{:href => "#"} Профиль
+          %li{:class => "#{is_active(clients_path)}"}
+            = link_to 'Клиенты', clients_path
+        -#  %li.dropdown
+        -#    %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+        -#      Dropdown
+        -#      %span.caret
+        -#    %ul.dropdown-menu
+        -#      %li
+        -#        %a{:href => "#"} Action
+        -#      %li
+        -#        %a{:href => "#"} Another action
+        -#      %li
+        -#        %a{:href => "#"} Something else here
+        -#      %li.divider{:role => "separator"}
+        -#      %li
+        -#        %a{:href => "#"} Separated link
+        -#      %li.divider{:role => "separator"}
+        -#      %li
+        -#        %a{:href => "#"} One more separated link
+        -#%form.navbar-form.navbar-left
+        -#  .form-group
+        -#    %input.form-control{:placeholder => "Search", :type => "text"}/
+        -#  %button.btn.btn-default{:type => "submit"} Submit
+        %ul.nav.navbar-nav.navbar-right
+          %li.dropdown
+            %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+              - if current_user.has_role? :agent
+                = "Агент #{current_user.name}"
+              - elsif current_user.has_role? :partner
+                = "Партнёр #{current_user.name}"
+              %span.caret
+            %ul.dropdown-menu
+              %li
+                %a{:href => "#"} Профиль
+              %li
+                %a{:href => "#"} Настройки
+              %li.divider{:role => "separator"}
+              %li
+                = link_to "Выход", :logout, method: :post

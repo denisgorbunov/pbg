@@ -1,0 +1,6 @@
+.client_form
+  = f.simple_fields_for :client do |c|
+    = c.input :name, as: :string, label: 'Название', hint: false, placeholder: 'ООО "Рога и копыта"'
+    = c.input :inn, as: :integer, label: 'ИНН', hint: false, placeholder: '1234567890'
+    = c.input :kpp, as: :integer, label: 'КПП', hint: false, placeholder: '1234567890'
+    = c.input :user_id, :as => :hidden, :input_html => { :value => "#{current_user.id}" }

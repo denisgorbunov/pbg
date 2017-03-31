@@ -3,6 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 document.addEventListener 'turbolinks:load', ->
+
   form = document.querySelector('.simple_form')
   issue = document.querySelector('.request_issue')
   form.addEventListener 'change', ((e) ->
@@ -22,6 +23,16 @@ document.addEventListener 'turbolinks:load', ->
     else if form['request[immediately]'].value == 'true'
       dateEnd.classList.add 'is-visible'
       dateStart.classList.remove 'is-visible'
+    return
+  ), false
+
+  client = document.querySelector('.client_form')
+  form.addEventListener 'change', ((e) ->
+    if form['request[client_id]'].value
+      client.classList.add 'is-invisible'
+    else
+      client.classList.remove 'is-invisible'
+      client.classList.add 'is-visible'
     return
   ), false
 

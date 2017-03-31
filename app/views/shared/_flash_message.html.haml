@@ -1,6 +1,7 @@
 - flash.each do |level, message|
-  %div.fade.in{ :class => flash_class(level) }
-    %a.close{:href => "#", "data-dismiss" => "alert",} ×
-    - if level=='error' || level=='alert'
-      %h4.alert-heading Внимание!
-    %p= message
+  .row
+    %div.fade.in{ :class => flash_class(level) }
+      %a.close{:href => "#", "data-dismiss" => "alert",} ×
+      - if level=='error' || level=='alert'
+        %h4.alert-heading Внимание!
+      %p= message

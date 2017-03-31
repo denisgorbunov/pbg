@@ -1,53 +1,48 @@
 .row
-  .col-md-4
-    = simple_form_for(@request, wrapper: :inline_form, html: {class: 'form-horizontal'}) do |f|
-      = f.input :client_id, collection: @clients, as: :select, prompt: 'Выберите клиента', label: 'Клиент'
-      = f.simple_fields_for :client do |c|
-        = c.input :name, as: :string, label: 'Название', hint: false, placeholder: 'ООО "Рога и копыта"'
-        = c.input :inn, as: :integer, label: 'ИНН', hint: false, placeholder: '1234567890'
-        = c.input :kpp, as: :integer, label: 'КПП', hint: false, placeholder: '1234567890'
-        = c.input :user_id, :as => :hidden, :input_html => { :value => "#{current_user.id}" }
-      = f.input :template, as: :radio_buttons, collection: [['Да',true], ['Нет',false]], label: 'Шаблон заказчика', :item_wrapper_class => 'radio-inline'
-      = f.input :bg_type, as: :radio_buttons, collection: [['Коммерческая',1], ['Госзакупка',0]], label: 'Тип гарантии', :item_wrapper_class => 'radio-inline'
-      = f.input :issue, placeholder: 'Номер извещения/закупки'
-      .row
-        .col-md-8
-          = f.input :bg_summ, label: false, placeholder: 'Сумма БГ'
-        .col-md-4
-          = f.input :summ_currency, label: false, as: :select, collection: [["&#8381;".html_safe, 'rub'], ["&euro;".html_safe, 'eur'], ["&dollar;".html_safe, 'usd']], prompt: 'Валюта'
-      = f.input :immediately, as: :radio_buttons, collection: [['Да',true], ['Нет',false]], label: 'Срок гарантии с момента выдачи', :item_wrapper_class => 'radio-inline'
-      = f.input :date_start, as: :string, :input_html => {:data => {:provide => 'datepicker', 'date-format' => 'dd.mm.yyyy', 'date-autoclose' => 'true'}}, placeholder: 'c'
-      = f.input :date_end, as: :string, :input_html => {:data => {:provide => 'datepicker', 'date-format' => 'dd.mm.yyyy', 'date-autoclose' => 'true'}}, placeholder: 'по'
-      = f.input :prepayment, as: :radio_buttons, collection: [['Да',true], ['Нет',false]], label: 'Аванс', :item_wrapper_class => 'radio-inline'
-      = f.input :comment, as: :text, label: 'Комментарий', placeholder: 'Комментарий'
-      .row
-        .col-md-8
-          %p Заявление на предоставление банковской гарантии
-        .col-md-4
-          = f.input :file_application, as: :file, label: false
-      .row
-        .col-md-8
-          %p Паспорта всех Учредителей, Генерального директора и Главного бухгалтера
-        .col-md-4
-          = f.input :file_passports, as: :file, label: false
-      .row
-        .col-md-8
-          %p Проект контракта
-        .col-md-4
-          = f.input :file_project, as: :file, label: false
-      .row
-        .col-md-8
-          %p Согласия юридического и физического лиц на запрос и предоставление информации в Бюро Кредитных Историй для всех учредителей и директора, образец
-        .col-md-4
-          = f.input :file_consent, as: :file, label: false
-      .row
-        .col-md-8
-          %p Баланс и отчет о финансовых результатах предприятия за последние 5 отчетных периодов.
-        .col-md-4
+  = simple_form_for(@request, html: {class: 'form-horizontal'}) do |f|
+    = f.input :client_id, collection: @clients, as: :select, prompt: 'Создать нового', label: 'Укажите клиента:'
+    - if @request.client_id.blank?
+      = render 'client_form', f: f
+    = f.input :template, as: :radio_buttons, collection: [['Да',true], ['Нет',false]], label: 'Шаблон заказчика:', :item_wrapper_class => 'radio-inline'
+    = f.input :bg_type, as: :radio_buttons, collection: [['Коммерческая',1], ['Госзакупка',0]], label: 'Тип гарантии:', :item_wrapper_class => 'radio-inline'
+    = f.input :issue, placeholder: 'Номер извещения/закупки'
+    .row
+      .col-md-8
+        = f.input :bg_summ, label: 'Сумма БГ:', placeholder: '1 350 000'
+      .col-md-4
+        = f.input :summ_currency, label: 'Валюта:', as: :select, collection: [["&#8381;".html_safe, 'rub'], ["&euro;".html_safe, 'eur'], ["&dollar;".html_safe, 'usd']], prompt: false
+    = f.input :immediately, as: :radio_buttons, collection: [['Да',true], ['Нет',false]], label: 'Срок гарантии с момента выдачи:', :item_wrapper_class => 'radio-inline'
+    = f.input :date_start, as: :string, :input_html => {:data => {:provide => 'datepicker', 'date-format' => 'dd.mm.yyyy', 'date-autoclose' => 'true'}}, placeholder: 'c', label: false
+    = f.input :date_end, as: :string, :input_html => {:data => {:provide => 'datepicker', 'date-format' => 'dd.mm.yyyy', 'date-autoclose' => 'true'}}, placeholder: 'по', label: false
+    = f.input :prepayment, as: :radio_buttons, collection: [['Да',true], ['Нет',false]], label: 'Аванс', :item_wrapper_class => 'radio-inline'
+    = f.input :comment, as: :text, label: 'Комментарий', placeholder: 'Комментарий'
+    .row
+      .col-md-8
+        %p Заявление на предоставление банковской гарантии
+      .col-md-4
+        = f.input :file_application, as: :file, label: false
+    .row
+      .col-md-8
+        %p Паспорта всех Учредителей, Генерального директора и Главного бухгалтера
+      .col-md-4
+        = f.input :file_passports, as: :file, label: false
+    .row
+      .col-md-8
+        %p Проект контракта
+      .col-md-4
+        = f.input :file_project, as: :file, label: false
+    .row
+      .col-md-8
+        %p Согласия юридического и физического лиц на запрос и предоставление информации в Бюро Кредитных Историй для всех учредителей и директора, образец
+      .col-md-4
+        = f.input :file_consent, as: :file, label: false
+    .row
+      .col-md-8
+        %p Баланс и отчет о финансовых результатах предприятия за последние 5 отчетных периодов.
+      .col-md-4
         -#= f.input :file_balans, as: :file, label: false
 
 
-      %p{align: "center"}
-        = f.submit 'Сохранить', class: 'btn btn-md btn-success'
-        = link_to 'Назад', :back, class: 'btn btn-md btn-primary'
-  .col-md-8
+    %p{align: "center"}
+      = f.submit 'Сохранить', class: 'btn btn-md btn-success'
+      = link_to 'Назад', :back, class: 'btn btn-md btn-primary'

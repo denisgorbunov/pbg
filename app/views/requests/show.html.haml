@@ -1,52 +1,51 @@
+.page-header
+  %h3
+    = "Заявка ##{@request.id} от #{client(@request.client_id).name} (#{client(@request.client_id).inn})"
 .row
-  .page-header
-    %h3
-      = "Заявка ##{@request.id} от #{client(@request.client_id).name} (#{client(@request.client_id).inn})"
-  .row
-    .col-sm-6
-      %p
-        %h3 Анкета:
-      %p
-        %b Шаблон заказчика:
-        = yes_no(@request.template)
-      %p
-        %b Тип гарантии:
-        = bg_type(@request.bg_type)
-        - if @request.bg_type==0
-          = "(<b>#{@request.issue}</b>)".html_safe
-      %p
-        %b Сумма БГ:
-        = summ_delimeter(@request.bg_summ)
-        = currency(@request.summ_currency)
-      %p
-        %b Срок гарантии с момента выдачи:
-        = yes_no(@request.immediately)
-      %p
-        %b Срок действия:
-        = "по #{@request.date_end.strftime('%d.%m.%Y')} (#{@request.date_end.mjd - @request.created_at.to_date.mjd} дней)"
-      %p
-        %b Аванс:
-        = yes_no(@request.prepayment)
-      %p
-        %b Комментарий:
-        = @request.comment
-    .col-sm-6
-      %p
-        %h3
-          Документы:
-          - if @request.file_application? || @request.file_passports? || @request.file_project? || @request.file_consent?
-            %small= link_to "(Скачать архивом)", zip_create_path(id: @request.id)
-      %p
-        %b Заявление на предоставление БГ:
-        = link_to "Скачать", @request.file_application.url, :"download"=>"#{@request.id} Заявление на предоставление БГ" if @request.file_application?
-      %p
-        %b Паспорта:
-        = link_to "Скачать", @request.file_passports.url, :"download"=>"#{@request.id} Паспорта" if @request.file_passports?
-      %p
-        %b Проект контракта:
-        = link_to "Скачать", @request.file_project.url, :"download"=>"#{@request.id} Проект контракта" if @request.file_project?
-      %p
-        %b Согласия на запрос и предоставление информации:
-        = link_to "Скачать", @request.file_consent.url, :"download"=>"#{@request.id} Согласия на запрос и предоставление информации" if @request.file_consent?
-      %p
-        %b Баланс и отчет о финансовых результатах:
+  .col-sm-6
+    %p
+      %h3 Анкета:
+    %p
+      %b Шаблон заказчика:
+      = yes_no(@request.template)
+    %p
+      %b Тип гарантии:
+      = bg_type(@request.bg_type)
+      - if @request.bg_type==0
+        = "(<b>#{@request.issue}</b>)".html_safe
+    %p
+      %b Сумма БГ:
+      = summ_delimeter(@request.bg_summ)
+      = currency(@request.summ_currency)
+    %p
+      %b Срок гарантии с момента выдачи:
+      = yes_no(@request.immediately)
+    %p
+      %b Срок действия:
+      = "по #{@request.date_end.strftime('%d.%m.%Y')} (#{@request.date_end.mjd - @request.created_at.to_date.mjd} дней)"
+    %p
+      %b Аванс:
+      = yes_no(@request.prepayment)
+    %p
+      %b Комментарий:
+      = @request.comment
+  .col-sm-6
+    %p
+      %h3
+        Документы:
+        - if @request.file_application? || @request.file_passports? || @request.file_project? || @request.file_consent?
+          %small= link_to "(Скачать архивом)", zip_create_path(id: @request.id)
+    %p
+      %b Заявление на предоставление БГ:
+      = link_to "Скачать", @request.file_application.url, :"download"=>"#{@request.id} Заявление на предоставление БГ" if @request.file_application?
+    %p
+      %b Паспорта:
+      = link_to "Скачать", @request.file_passports.url, :"download"=>"#{@request.id} Паспорта" if @request.file_passports?
+    %p
+      %b Проект контракта:
+      = link_to "Скачать", @request.file_project.url, :"download"=>"#{@request.id} Проект контракта" if @request.file_project?
+    %p
+      %b Согласия на запрос и предоставление информации:
+      = link_to "Скачать", @request.file_consent.url, :"download"=>"#{@request.id} Согласия на запрос и предоставление информации" if @request.file_consent?
+    %p
+      %b Баланс и отчет о финансовых результатах:
