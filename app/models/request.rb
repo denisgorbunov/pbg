@@ -6,10 +6,12 @@ class Request < ApplicationRecord
   mount_uploader :file_consent, RequestUploader
   mount_uploader :file_balans, RequestUploader
   belongs_to  :user
-  belongs_to  :client
+  belongs_to  :client, inverse_of: :requests
+  accepts_nested_attributes_for :client
 
   before_create :set_status
-  validates :client_id, presence: { message: "Обязательно укажите клиента" }
+  #validates :client_id, presence: { message: "Обязательно укажите клиента" }
+  #before_validation :create_client
 
   protected
 

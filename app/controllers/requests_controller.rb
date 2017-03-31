@@ -11,6 +11,7 @@ class RequestsController < ApplicationController
 
   def new
     @request = Request.new
+    @request.build_client
     if current_user.has_role? :agent
       @clients = current_user.clients
     elsif current_user.has_role? :partner
@@ -126,7 +127,7 @@ class RequestsController < ApplicationController
   def request_params
     params.require(:request).permit(:client_id, :template, :bg_type, :issue, :bg_summ, :summ_currency, :immediately,
                                     :date_end, :prepayment, :comment, :file_application, :file_passports, :file_project,
-                                    :file_consent, :file_balans)
+                                    :file_consent, :file_balans, :date_start, :client_attributes => [:user_id, :name, :inn, :kpp])
   end
 
 end

@@ -24,8 +24,8 @@ ActiveRecord::Schema.define(version: 20170328123608) do
   end
 
   create_table "requests", force: :cascade do |t|
-    t.integer  "client_id"
     t.integer  "user_id"
+    t.integer  "client_id"
     t.boolean  "template"
     t.integer  "bg_type"
     t.integer  "issue",            limit: 20
