@@ -5,7 +5,7 @@
       = render 'client_form', f: f
     = f.input :template, as: :radio_buttons, collection: [['Да',true], ['Нет',false]], label: 'Шаблон заказчика:', :item_wrapper_class => 'radio-inline'
     = f.input :bg_type, as: :radio_buttons, collection: [['Коммерческая',1], ['Госзакупка',0]], label: 'Тип гарантии:', :item_wrapper_class => 'radio-inline'
-    = f.input :issue, placeholder: 'Номер извещения/закупки'
+    = f.input :issue, placeholder: 'Номер извещения/закупки', label: false
     .row
       .col-md-8
         = f.input :bg_summ, label: 'Сумма БГ:', placeholder: '1 350 000'

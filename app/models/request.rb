@@ -10,12 +10,12 @@ class Request < ApplicationRecord
   accepts_nested_attributes_for :client
 
   before_create :set_status
-  validates :client_id, presence: { message: "Обязательно укажите клиента" }
+  #validates :client_id, presence: { message: "Обязательно укажите клиента" }
   validates :date_end, :date_start, presence: { message: "Укажите дату" }
   validates :bg_type, presence: { message: "Укажите тип БГ" }
   validates :issue, presence: { message: "Укажите номер извещения" }, if: :bg_type?
   validates :bg_summ, presence: { message: "Укажите сумму" }
-  before_validation :check_client_fields
+  #before_validation :check_client_fields
 
   protected
 

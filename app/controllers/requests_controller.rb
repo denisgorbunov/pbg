@@ -20,7 +20,7 @@ class RequestsController < ApplicationController
   end
 
   def create
-    @request = current_user.requests.create(request_params)
+    @request = current_user.requests.create!(request_params)
     if @request.valid?
       flash[:success]='Заявка создана'
       redirect_to requests_path
