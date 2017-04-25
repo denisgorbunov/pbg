@@ -20,8 +20,12 @@ class RequestsController < ApplicationController
   end
 
   def create
-    @request = current_user.requests.create(request_params)
-    if @request.valid?
+    rp = request_params
+    if rp[:client_id].present?
+      rp.delete(:client_attributes)
+    end
+    @request = current_user.requests.new(rp)
+    if @request.save
       flash[:success]='Заявка создана'
       redirect_to requests_path
     else
