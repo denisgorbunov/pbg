@@ -20,7 +20,7 @@ class RequestsController < ApplicationController
   end
 
   def create
-    @request = current_user.requests.create!(request_params)
+    @request = current_user.requests.create(request_params)
     if @request.valid?
       flash[:success]='Заявка создана'
       redirect_to requests_path
@@ -127,7 +127,7 @@ class RequestsController < ApplicationController
   def request_params
     params.require(:request).permit(:client_id, :template, :bg_type, :issue, :bg_summ, :summ_currency, :immediately,
                                     :date_end, :prepayment, :comment, :file_application, :file_passports, :file_project,
-                                    :file_consent, :file_balans, :date_start, :client_attributes => [:user_id, :name, :inn, :kpp])
+                                    :file_consent, :file_balans, :date_start, :client_attributes => [:id, :user_id, :name, :inn, :kpp])
   end
 
 end
